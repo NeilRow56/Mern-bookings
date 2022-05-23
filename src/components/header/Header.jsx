@@ -96,7 +96,7 @@ function Header({ type }) {
 							Sign in / Register
 						</button>
 					</div>
-					<div className="flex bg-[#003580] w-full  max-w-[1024px] mx-auto relative p-2">
+					<div className="flex bg-[#003580] w-full  max-w-[1024px] mx-auto relative ">
 						<div className="max-w-[1024px] mx-auto flex space-x-4 w-full bg-[#fff] py-1 px-3 h-12 items-center justify-between border-2 border-[#f0c14b]  absolute bottom-[-23px] text-gray-500 ">
 							<div>
 								<FontAwesomeIcon
@@ -129,7 +129,7 @@ function Header({ type }) {
 								</div>
 								{openDate && (
 									<DateRange
-										className="absolute top-[50px] "
+										className="absolute top-[50px] z-20"
 										editableDateInputs={true}
 										onChange={(item) =>
 											setDate([item.selection])
@@ -139,7 +139,7 @@ function Header({ type }) {
 									/>
 								)}
 							</div>
-							<div className="flex relative">
+							<div className="flex relative z-20 ">
 								<FontAwesomeIcon
 									className="mr-2"
 									icon={faPerson}
@@ -149,7 +149,7 @@ function Header({ type }) {
 									onClick={() => setOpenOptions(!openOptions)}
 								>{`${options.adult} adult  ·  ${options.children} children  ·  ${options.rooms} rooms `}</span>
 								{openOptions && (
-									<div className="flex flex-col absolute bottom-[-135px] w-full border border-gray-200 rounded p-2 ">
+									<div className="flex flex-col absolute bottom-[-135px] w-full border border-gray-200 rounded p-2 bg-[#fff] ">
 										<div className=" flex justify-between mt-2">
 											<span className="">Adult</span>
 											<div>
@@ -167,7 +167,7 @@ function Header({ type }) {
 												>
 													-
 												</button>
-												<span className="font-bold">
+												<span className="font-bold text-gray-400">
 													{options.adult}
 												</span>
 												<button
@@ -200,7 +200,7 @@ function Header({ type }) {
 												>
 													-
 												</button>
-												<span className="font-bold">
+												<span className="font-bold text-gray-400">
 													{options.children}
 												</span>
 												<button
@@ -233,7 +233,7 @@ function Header({ type }) {
 												>
 													-
 												</button>
-												<span className="font-bold">
+												<span className="font-bold text-gray-400">
 													{options.rooms}
 												</span>
 												<button
