@@ -13,6 +13,7 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 // import {useState} from 'react'
 // const [state, setState] = useState([
@@ -31,6 +32,7 @@ import { format } from 'date-fns';
 // />
 
 function Header({ type }) {
+	const [destination, setDestination] = useState('');
 	const [openDate, setOpenDate] = useState(false);
 	const [date, setDate] = useState([
 		{
@@ -47,6 +49,8 @@ function Header({ type }) {
 		rooms: 1,
 	});
 
+	const navigate = useNavigate();
+
 	const handleOption = (name, operation) => {
 		setOptions((prev) => {
 			return {
@@ -57,6 +61,10 @@ function Header({ type }) {
 						: options[name] - 1,
 			};
 		});
+	};
+
+	const handleSearch = () => {
+		navigate('/hotels', { state: { destination, date, options } });
 	};
 
 	return (
@@ -104,9 +112,12 @@ function Header({ type }) {
 									icon={faBed}
 								/>
 								<input
-									className="border border-gray-400 rounded"
+									className="border border-gray-400 rounded pl-2"
 									type="text"
 									placeholder="Where are you going?"
+									onChange={(e) =>
+										setDestination(e.target.value)
+									}
 								/>
 							</div>
 
@@ -136,6 +147,7 @@ function Header({ type }) {
 										}
 										moveRangeOnFirstSelection={false}
 										ranges={date}
+										minDate={new Date()}
 									/>
 								)}
 							</div>
@@ -253,7 +265,10 @@ function Header({ type }) {
 								)}
 							</div>
 							<div>
-								<button className=" bg-[#0071c2] text-[#fff] px-2 py-1 rounded font-semibold">
+								<button
+									onClick={handleSearch}
+									className=" bg-[#0071c2] text-[#fff] px-2 py-1 rounded font-semibold"
+								>
 									Search
 								</button>
 							</div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const PropertyList = () => {
 	return (
-		<div div className="flex space-x-4">
+		<div className="flex space-x-4">
 			<div className="flex flex-col w-1/5">
 				<img
 					className="w-full grow h-[150px] cursor-pointer rounded object-cover"

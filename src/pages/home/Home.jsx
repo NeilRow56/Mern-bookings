@@ -13,7 +13,7 @@ function Home() {
 			<Navbar />
 			<Header />
 			<div className="flex flex-col w-full max-w-[1024px]  mx-auto mt-20 space-y-4 items-center ">
-				<Featured className="" />
+				<Featured />
 			</div>
 			<div className=" flex w-full max-w-[1024px] mx-auto ">
 				<h1 className="font-bold w-full mt-6  mb-3">

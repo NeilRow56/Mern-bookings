@@ -11,9 +11,7 @@ const Footer = () => {
 						<li className="cursor-pointer">Cities</li>
 						<li className="cursor-pointer">Districts</li>
 						<li className="cursor-pointer">Airports</li>
-						<li className="cursor-pointer" cursor-pointer>
-							HotelsAirports
-						</li>
+						<li className="cursor-pointer">HotelsAirports</li>
 					</ul>
 					<ul className="w-1/5">
 						<li className="cursor-pointer">Homes </li>
