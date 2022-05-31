@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem';
+import useFetch from '../../hooks/useFetch';
 
 const List = () => {
 	const location = useLocation();
@@ -13,6 +14,17 @@ const List = () => {
 	const [date, setDate] = useState(location.state.date);
 	const [openDate, setOpenDate] = useState(false);
 	const [options, setOptions] = useState(location.state.options);
+	const [min, setMin] = useState(undefined);
+	const [max, setMax] = useState(undefined);
+
+	const { data, loading, error, reFetch } = useFetch(
+		`http://localhost:8800/api/hotels?city=${destination}&min=${
+			min || 0
+		}&max=${max || 999}`
+	);
+	const handleClick = () => {
+		reFetch();
+	};
 
 	return (
 		<>
@@ -61,6 +73,7 @@ const List = () => {
 							</span>
 							<input
 								type="number"
+								onChange={(e) => setMin(e.target.value)}
 								className="
         form-control
         block
@@ -88,6 +101,7 @@ const List = () => {
 							</span>
 							<input
 								type="number"
+								onChange={(e) => setMax(e.target.value)}
 								className="
         form-control
         block
@@ -192,20 +206,24 @@ const List = () => {
 						</div>
 					</div>
 					<div className="flex w-full ">
-						<button className="  cursor-pointer text-[#fff] bg-[#0071c2] rounded  px-1  h-8 mb-5 font-semibold w-full mx-10 ">
+						<button
+							onClick={handleClick}
+							className="  cursor-pointer text-[#fff] bg-[#0071c2] rounded  px-1  h-8 mb-5 font-semibold w-full mx-10 "
+						>
 							Search
 						</button>
 					</div>
 				</div>
 				<div className="col-span-4">
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
-					<SearchItem />
+					{loading ? (
+						'loading...'
+					) : (
+						<>
+							{data.map((item) => (
+								<SearchItem item={item} key={item._id} />
+							))}
+						</>
+					)}
 				</div>
 			</div>
 		</>
