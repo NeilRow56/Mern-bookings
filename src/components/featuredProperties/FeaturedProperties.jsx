@@ -12,9 +12,9 @@ const FeaturedProperties = () => {
 				'Loading'
 			) : (
 				<>
-					{data.map((item) => (
-						<div className="grid grid-cols-1 w-full key={item._id}">
-							<div className="flex flex-col  ">
+					<div className=" flex space-x-4 w-full">
+						{data.map((item) => (
+							<div className=" flex flex-col " key={item._id}>
 								<img
 									src={item.photos[0]}
 									alt=""
@@ -34,8 +34,8 @@ const FeaturedProperties = () => {
 									</div>
 								)}
 							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</>
 			)}
 		</div>

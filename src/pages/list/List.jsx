@@ -11,7 +11,7 @@ const List = () => {
 	const location = useLocation();
 
 	const [destination, setDestination] = useState(location.state.destination);
-	const [date, setDate] = useState(location.state.date);
+	const [dates, setDates] = useState(location.state.dates);
 	const [openDate, setOpenDate] = useState(false);
 	const [options, setOptions] = useState(location.state.options);
 	const [min, setMin] = useState(undefined);
@@ -40,7 +40,7 @@ const List = () => {
 					<div className="flex flex-col">
 						<label className="mr-3 ml-8">Destination</label>
 						<input
-							className="mt-2 pl-2 m-8
+							className="  mt-2 pl-2 m-8
 						"
 							type="text"
 							placeholder={destination}
@@ -49,18 +49,18 @@ const List = () => {
 					<div className="flex flex-col ">
 						<label className="mr-3 ml-8">Check-in Date</label>
 						<span
-							className="mt-2 pl-2 m-8 bg-white text-center "
+							className="mt-2 pl-2 m-8 bg-white text-center text-gray-300"
 							onClick={() => setOpenDate(!openDate)}
 						>{`${format(
-							date[0].startDate,
+							dates[0].startDate,
 							'dd/MM/yyyy'
-						)} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>
+						)} to ${format(dates[0].endDate, 'dd/MM/yyyy')}`}</span>
 						{openDate && (
 							<DateRange
 								className="mx-auto "
-								onChange={(item) => setDate([item.selection])}
+								onChange={(item) => setDates([item.selection])}
 								minDate={new Date()}
-								ranges={date}
+								ranges={dates}
 							/>
 						)}
 					</div>

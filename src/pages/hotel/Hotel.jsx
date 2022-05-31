@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
@@ -13,6 +13,7 @@ import {
 	faCircleXmark,
 	faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
+import { SearchContext } from '../../context/SearchContext';
 
 function Hotel() {
 	const location = useLocation();
@@ -23,6 +24,10 @@ function Hotel() {
 	const { data, loading, error } = useFetch(
 		`http://localhost:8800/api/hotels/find/${id}`
 	);
+
+	const { dates } = useContext(SearchContext);
+
+	console.log(dates);
 
 	const handleOpen = (index) => {
 		setSlideNumber(index);
