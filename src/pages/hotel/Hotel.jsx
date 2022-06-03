@@ -25,9 +25,15 @@ function Hotel() {
 		`http://localhost:8800/api/hotels/find/${id}`
 	);
 
-	const { dates } = useContext(SearchContext);
-
-	console.log(dates);
+	const { dates, options } = useContext(SearchContext);
+	console.log(options.rooms);
+	const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+	function dayDifference(date1, date2) {
+		const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+		const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+		return diffDays;
+	}
+	const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
 	const handleOpen = (index) => {
 		setSlideNumber(index);
@@ -123,14 +129,17 @@ function Hotel() {
 						</div>
 						<div className="col-span-2 w-full flex flex-col mt-8 ml-3 bg-[#ebf3ff]  rounded-md p-2">
 							<h4 className="font-bold text-[18px]">
-								Perfect for a 9-night stay!
+								Perfect for a {days}-night stay!
 							</h4>
 							<span className="my-4">
 								Located in the real heart of Krakow, this
 								property has an excellent location score of 9.8!
 							</span>
 							<h2 className="mb-7">
-								<b>£945</b> (9 nights)
+								<b>
+									£{days * data.cheapestPrice * options.room}
+								</b>{' '}
+								({days} nights)
 							</h2>
 							<button className="bg-[#0071c2] h-16 px-1 rounded-md text-[#fff] md:h-8 items-center mx-3">
 								Reserve or Book Now!

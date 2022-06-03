@@ -47,7 +47,7 @@ function Header({ type }) {
 	const [options, setOptions] = useState({
 		adult: 1,
 		children: 0,
-		rooms: 1,
+		room: 1,
 	});
 
 	const navigate = useNavigate();
@@ -166,7 +166,7 @@ function Header({ type }) {
 								<span
 									className="cursor-pointer"
 									onClick={() => setOpenOptions(!openOptions)}
-								>{`${options.adult} adult  ·  ${options.children} children  ·  ${options.rooms} rooms `}</span>
+								>{`${options.adult} adult  ·  ${options.children} children  ·  ${options.room} room `}</span>
 								{openOptions && (
 									<div className="flex flex-col absolute bottom-[-135px] w-full border border-gray-200 rounded p-2 bg-[#fff] ">
 										<div className=" flex justify-between mt-2">
@@ -239,12 +239,10 @@ function Header({ type }) {
 											<span>Rooms</span>
 											<div>
 												<button
-													disabled={
-														options.rooms <= 1
-													}
+													disabled={options.room <= 1}
 													onClick={() =>
 														handleOption(
-															'rooms',
+															'room',
 															'decrease'
 														)
 													}
@@ -253,12 +251,12 @@ function Header({ type }) {
 													-
 												</button>
 												<span className="font-bold text-gray-400">
-													{options.rooms}
+													{options.room}
 												</span>
 												<button
 													onClick={() =>
 														handleOption(
-															'rooms',
+															'room',
 															'increase'
 														)
 													}

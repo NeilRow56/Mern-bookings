@@ -57,7 +57,6 @@ const List = () => {
 						)} to ${format(dates[0].endDate, 'dd/MM/yyyy')}`}</span>
 						{openDate && (
 							<DateRange
-								className="mx-auto "
 								onChange={(item) => setDates([item.selection])}
 								minDate={new Date()}
 								ranges={dates}
@@ -183,7 +182,7 @@ const List = () => {
 								type="number"
 								id="exampleNumber0"
 								min={1}
-								placeholder={options.rooms}
+								placeholder={options.room}
 								className="
         form-control
         block
