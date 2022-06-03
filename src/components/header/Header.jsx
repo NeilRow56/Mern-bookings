@@ -16,6 +16,8 @@ import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
 
+import { AuthContext } from '../../context/AuthContext';
+
 // import {useState} from 'react'
 // const [state, setState] = useState([
 //     {
@@ -51,6 +53,8 @@ function Header({ type }) {
 	});
 
 	const navigate = useNavigate();
+
+	const { user } = useContext(AuthContext);
 
 	const handleOption = (name, operation) => {
 		setOptions((prev) => {
@@ -102,14 +106,16 @@ function Header({ type }) {
 				<>
 					<div className="max-w-[1024px] mx-auto w-full text-[#fff]">
 						<h1>A lifetime of discounts? It's Genius.</h1>
-						<p className="my-[20px]">
+						<p className="mb-[40px] mt-[20px]">
 							Get rewarded for your travels – unlock instant
 							savings of 10% or more with a free Lamabooking
 							account
 						</p>
-						<button className=" bg-[#0071c2] text-[#fff] border mt-2 mb-16 px-2 border-gray-200 rounded font-semibold">
-							Sign in / Register
-						</button>
+						{!user && (
+							<button className=" bg-[#0071c2] text-[#fff] border mt-2 mb-16 px-2 border-gray-200 rounded font-semibold">
+								Sign in / Register
+							</button>
+						)}
 					</div>
 					<div className="flex bg-[#003580] w-full  max-w-[1024px] mx-auto relative ">
 						<div className="max-w-[1024px] mx-auto flex space-x-4 w-full bg-[#fff] py-1 px-3 h-12 items-center justify-between border-2 border-[#f0c14b]  absolute bottom-[-23px] text-gray-500 ">
